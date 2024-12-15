@@ -13,6 +13,8 @@ export default function Home({ students }) {
         setData({ name: "", nim: "" });
     }
 
+    // students.data = [];
+
     return (
         <main className="grid py-32 font-sans place-items-center">
             <section className="flex flex-col w-1/2 gap-20">
@@ -78,7 +80,7 @@ export default function Home({ students }) {
 
                         {/* student's data */}
                         <tbody>
-                            {!students.data ? (
+                            {!students.data.length ? (
                                 <tr>
                                     <td
                                         className="py-10 text-center"
@@ -121,29 +123,34 @@ export default function Home({ students }) {
                         </tbody>
                     </table>
 
-                    <div className="px-4 py-12 text-white">
-                        {students.links.map(({ label, url, active }) =>
-                            url ? (
-                                <Link
-                                    key={label}
-                                    href={url}
-                                    dangerouslySetInnerHTML={{ __html: label }}
-                                    preserveScroll='true'
-                                    className={`px-1 mx-1 ${
-                                        active ? "font-bold" : ""
-                                    }`}
-                                />
-                            ) : (
-                                <span
-                                    key={label}
-                                    dangerouslySetInnerHTML={{
-                                        __html: label,
-                                    }}
-                                    className="px-1 mx-1 opacity-50 text-slate-100"
-                                ></span>
-                            )
-                        )}
-                    </div>
+                    {/* Pagination */}
+                    {!!students.data.length && (
+                        <div className="px-4 py-12 text-white">
+                            {students.links.map(({ label, url, active }) =>
+                                url ? (
+                                    <Link
+                                        key={label}
+                                        href={url}
+                                        dangerouslySetInnerHTML={{
+                                            __html: label,
+                                        }}
+                                        preserveScroll="true"
+                                        className={`px-1 mx-1 ${
+                                            active ? "font-bold" : ""
+                                        }`}
+                                    />
+                                ) : (
+                                    <span
+                                        key={label}
+                                        dangerouslySetInnerHTML={{
+                                            __html: label,
+                                        }}
+                                        className="px-1 mx-1 opacity-50 text-slate-100"
+                                    ></span>
+                                )
+                            )}
+                        </div>
+                    )}
                 </section>
             </section>
         </main>

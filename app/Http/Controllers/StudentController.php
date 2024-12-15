@@ -72,7 +72,7 @@ class StudentController extends Controller
     {
         $fields = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nim' => ['required', 'string', 'max:16', 'unique:students,nim']
+            'nim' => ['required', 'string', 'max:16']
         ]);
 
         $student = Student::findOrFail($student->id);

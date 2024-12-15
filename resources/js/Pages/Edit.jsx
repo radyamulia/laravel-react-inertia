@@ -20,8 +20,9 @@ export default function Edit({ student }) {
 
     function onSubmit(e) {
         e.preventDefault();
-        setData({ name: "", nim: "" });
+        console.log(data.name, data.nim)
         put(`/student/${student.id}`);
+        // setData({ name: "", nim: "" });
     }
 
     function onDelete(e) {
